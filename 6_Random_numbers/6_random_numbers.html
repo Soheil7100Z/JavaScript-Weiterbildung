@@ -3,65 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Übung Optional 1: Lottoziehung</title>
+    <title>Lottoziehung</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <script src="./assets/js/loop_for.js" defer> </script>
 
-    <style>
-      .lotto-ball {
-        margin: 10px;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        background-color: #ccc;
-        border: 1px solid #ddd;
-        box-shadow: 0 10px 10px rgba(0, 0, 0, 0.25);
-        background: #ccc;
-        background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(133, 133, 133, 1) 100%);
-
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-      .output {
-        overflow: hidden;
-      }
-
-      .bounceDown {
-        animation-name: bounceDown;
-        animation-duration: 800ms;
-        animation-timing-function: ease-out;
-        animation-fill-mode: both;
-      }
-
-      @keyframes bounceDown {
-        from {
-          transform: translate3d(0, -100%, 0);
-        }
-        20%,
-        53%,
-        to {
-          transform: translate3d(0, 0, 0);
-        }
-
-        40%,
-        43% {
-          transform: translate3d(0, -30%, 0);
-        }
-
-        70% {
-          transform: translate3d(0, -15%, 0);
-        }
-
-        80% {
-          transform: translate3d(0, 0, 0);
-        }
-
-        90% {
-          transform: translate3d(0, -4%, 0);
-        }
-      }
-    </style>
   </head>
   <body>
     <main>
@@ -69,52 +16,35 @@
         <div class="alert alert-primary">
           <h2>Übung Optional 1: Lottoziehung</h2>
           <p>
-            Schreibe ein Programm, dass eine Lottoziehung durchführt. Es sollen 6 Zufallszahlen zwischen 1 und 49
+            Schreibe ein Programm Mit einer Schleife, dass eine Lottoziehung durchführt. Es sollen 6 Zufallszahlen zwischen 1 und 49
             ausgegeben werden. Die Grenzwerte 1 und 49 sollen dabei inklusive sein.
           </p>
 
-          <h5>Löse die Aufgabe in 3 Varianten:</h5>
-          <ol>
-            <li>
-              Mit Rekursion. Erstelle eine Funktion, die ein Array mit einer Ziehung zurückgibt. Doppelte Zahlen dürfen
-              im Array nicht vorkommen.
-            </li>
-            <li>Mit einer Schleife</li>
-            <li>
-              Mit einer Shuffle-Helfer Funktion.
-              <a
-                href="https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array/2450976#2450976"
-                >Shuffle Funktion - stackoverflow
-              </a>
-              oder <a href="https://lodash.com/docs/4.17.15#shuffle">Shuffle von lodash</a>
-            </li>
-          </ol>
         </div>
-
-        <div class="output alert alert-secondary">
+        <div class="output alert alert-secondary d-flex align-items-center justify-content-between">
           <div class="row">
             <div class="lotto-ball">
-              <span class="lotto-number lotto-number-1">00</span>
+              <span class="lotto-number lotto-number-1 fw-bold">00</span>
             </div>
             <div class="lotto-ball">
-              <span class="lotto-number lotto-number-2">00</span>
+              <span class="lotto-number lotto-number-2 fw-bold">00</span>
             </div>
             <div class="lotto-ball">
-              <span class="lotto-number lotto-number-3">00</span>
+              <span class="lotto-number lotto-number-3 fw-bold">00</span>
             </div>
             <div class="lotto-ball">
-              <span class="lotto-number lotto-number-4">00</span>
+              <span class="lotto-number lotto-number-4 fw-bold">00</span>
             </div>
             <div class="lotto-ball">
-              <span class="lotto-number lotto-number-5">00</span>
+              <span class="lotto-number lotto-number-5 fw-bold">00</span>
             </div>
             <div class="lotto-ball">
-              <span class="lotto-number lotto-number-6">00</span>
+              <span class="lotto-number lotto-number-6 fw-bold">00</span>
             </div>
           </div>
+          <button class="fw-bold ps-3 pe-3 pt-2 pb-2 rounded btn btn-dark border-dark button">Neu generieren</button>
         </div>
       </div>
     </main>
-    <script src="loop_for.js"> </script>
   </body>
 </html>

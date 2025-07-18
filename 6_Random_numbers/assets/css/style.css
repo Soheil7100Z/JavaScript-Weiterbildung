@@ -1,0 +1,18 @@
+.lotto-ball {
+  margin: 10px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #ccc;
+  border: 1px solid #ddd;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.25);
+  background: #ccc;
+  background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(133, 133, 133, 1) 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.output {
+  overflow: hidden;
+}
+
