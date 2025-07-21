@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Public API auslesen</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" />
+  </head>
+  <body>
+    <main>
+      <div class="container py-5">
+        <div class="alert alert-primary">
+          <h2>Public API auslesen</h2>
+
+          <ul class="list">
+            <li>
+              Ich habe diese API verwendet, die 10 Katzenbilder enthält:
+              <a href="https://api.thecatapi.com/v1/images/search?limit=10">https://api.thecatapi.com/v1/images/search?limit=10</a>
+
+            </li>
+          </ul>
+        </div>
+        <button class="fw-bold ps-3 pe-3 pt-2 pb-2 rounded btn btn-dark border-dark button">Neu Bilder</button>
+        <div class="d-flex flex-wrap mt-3 justify-content-center">
+          <img class="imageTag w-25 m-2" src="" alt="">
+          <img class="imageTag w-25 m-2" src="" alt="">
+          <img class="imageTag w-25 m-2" src="" alt="">
+          <img class="imageTag w-25 m-2" src="" alt="">
+          <img class="imageTag w-25 m-2" src="" alt="">
+          <img class="imageTag w-25 m-2" src="" alt="">
+          <img class="imageTag w-25 m-2" src="" alt="">
+          <img class="imageTag w-25 m-2" src="" alt="">
+          <img class="imageTag w-25 m-2" src="" alt="">
+          <img class="imageTag w-25 m-2" src="" alt="">
+        </div>
+      </div>
+    </main>
+    <script>
+      // 'use strict';
+      const DOM = {}
+      DOM.container = document.querySelector('.container')
+      DOM.img = DOM.container.querySelectorAll('.imageTag')
+      DOM.btn = DOM.container.querySelector('.button')
+      console.log(DOM)
+
+      const init = () => {
+        getData().then((data) => imgListing(data))
+      }
+
+      DOM.btn.addEventListener('click' , newImageLoader)
+
+      function newImageLoader () {
+        getData().then((data) => imgListing(data))
+      }
+
+      const getData = async() => {
+        try {
+          const res = await fetch('https://api.thecatapi.com/v1/images/search?limit=10')
+          if(!res.ok) {
+            throw new Error('Data loading error');
+          }
+          const data = await res.json()
+          // console.log(data)
+          return data
+        } catch (error) {
+          console.log(error)
+        }
+
+      }
+      const imgListing = (data) => {
+        DOM.img.forEach((el , idx) => {
+            el.src = data[idx].url
+            el.alt = data[idx].id
+          })
+      }
+
+      init()
+
+    </script>
+  </body>
+</html>
