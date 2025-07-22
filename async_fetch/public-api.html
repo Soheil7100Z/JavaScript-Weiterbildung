@@ -10,18 +10,18 @@
   <body>
     <main>
       <div class="container py-5">
-        <div class="alert alert-primary">
+        <div class="alert alert-dark">
           <h2>Public API auslesen</h2>
 
           <ul class="list">
             <li>
-              Ich habe diese API verwendet, die 10 Katzenbilder enthält:
+              Diese API wurde verwendet, die 10 Katzenbilder enthält:
               <a href="https://api.thecatapi.com/v1/images/search?limit=10">https://api.thecatapi.com/v1/images/search?limit=10</a>
 
             </li>
           </ul>
+          <button class="fw-bold ps-3 pe-3 pt-2 pb-2 rounded btn btn-dark border-dark button">Neue Bilder</button>
         </div>
-        <button class="fw-bold ps-3 pe-3 pt-2 pb-2 rounded btn btn-dark border-dark button">Neu Bilder</button>
         <div class="d-flex flex-wrap mt-3 justify-content-center">
           <img class="imageTag w-25 m-2" src="" alt="">
           <img class="imageTag w-25 m-2" src="" alt="">
@@ -42,16 +42,19 @@
       DOM.container = document.querySelector('.container')
       DOM.img = DOM.container.querySelectorAll('.imageTag')
       DOM.btn = DOM.container.querySelector('.button')
-      console.log(DOM)
 
       const init = () => {
         getData().then((data) => imgListing(data))
       }
 
-      DOM.btn.addEventListener('click' , newImageLoader)
+      DOM.btn.addEventListener('click' , init)
 
-      function newImageLoader () {
-        getData().then((data) => imgListing(data))
+      // console.log(DOM.img[0].src)
+       const imgListing = (cats) => {
+        DOM.img.forEach((el , idx) => {
+            el.src = cats[idx].url
+            el.alt = cats[idx].id
+          })
       }
 
       const getData = async() => {
@@ -67,12 +70,6 @@
           console.log(error)
         }
 
-      }
-      const imgListing = (data) => {
-        DOM.img.forEach((el , idx) => {
-            el.src = data[idx].url
-            el.alt = data[idx].id
-          })
       }
 
       init()

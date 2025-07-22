@@ -9,7 +9,7 @@
   <body>
     <main>
       <div class="container py-5">
-        <div class="alert alert-primary">
+        <div class="alert alert-dark">
           <h2>Übung 23: Fetch API – Einfache Datenabfrage</h2>
           <p>
             Erstelle eine Funktion <code>fetchUsers</code>, die mithilfe der Fetch API eine Liste von Benutzern von der
@@ -21,10 +21,67 @@
             <a href="https://dummyjson.com/users">https://dummyjson.com/users</a> für den Fetch-Aufruf.
           </p>
         </div>
+        <div class="usersData">
+          <p>Vorname: <span class="fw-bold"></span></p>
+          <p>Nachname: <span class="fw-bold"></span></p>
+          <p>Alter: <span class="fw-bold"></span></p>
+          <p>Geburtsdatum: <span class="fw-bold"></span></p>
+          <p>E-mail: <span class="fw-bold"></span></p>
+          <p>Telefonnummer: <span class="fw-bold"></span></p>
+          <p>Adresse: <span class="fw-bold"></span></p>
+          <p>Stadt: <span class="fw-bold"></span></p>
+        </div>
+        <button class="fw-bold ps-3 pe-3 pt-2 pb-2 rounded btn btn-dark border-dark button">Neue Benutzern</button>
       </div>
     </main>
     <script>
       'use strict';
+
+      const DOM = {}
+      DOM.container = document.querySelector('.container')
+      DOM.userData = DOM.container.querySelectorAll('.usersData span')
+      DOM.btn = DOM.container.querySelector('.button')
+
+      const init = () => {
+        fetchUsers().then((data) => listCreate(data))
+      }
+
+      DOM.btn.addEventListener('click' , init)
+
+      const listCreate = (person) => {
+        const user = [
+          person.firstName,
+          person.lastName,
+          String(person.age),
+          person.birthDate,
+          person.email,
+          person.phone,
+          person.address.address,
+          person.address.city
+        ]
+        console.log(user)
+        DOM.userData.forEach((el , idx) =>{
+          el.textContent = user[idx]
+        })
+      }
+
+      const fetchUsers = async() => {
+        try {
+          const res = await fetch('https://dummyjson.com/users')
+          if (!res.ok) {
+            throw new Error('Loading error')
+          }
+          const data = await res.json()
+          const users = data.users
+          // console.log(users)
+          const randomIdx = Math.floor(Math.random() * 30) + 1
+          return users[randomIdx]
+        } catch (error) {
+          console.log(error)
+        }
+      }
+
+      init()
     </script>
   </body>
 </html>
